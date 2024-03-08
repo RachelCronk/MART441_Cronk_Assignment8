@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musing</title>
+    <link href="stylesheet.css" rel="stylesheet">
+    <script src="javascript.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+         <div class="raindrop-container"></div>
+        <div class="square"></div><BR>
+        <div id="title"><h1>M u s i n g</h1><h3> <button id="playButton">click here</button></h3></div>
+
+        <div id="altText"></div>
+
+        <div><BR>
+            <div id="slideshow">
+                <img src="images/1.jpg" alt="Fixated on the sharp light of the television, the darkness closes in around her." />
+                <img src="images/12.jpg" alt="Your feet may be sore, and your energy waning, but the path rambles onwards, and we are nothing if not curious what the next bend may hold." />
+                <img src="images/9.jpg" alt="Time is captured within words, art, and memories. We have a deep need to preserve these fleeting moments." />
+                <img src="images/4.jpg" alt="The raging of the clouds erupted into washes of sorrow and nostalgia. There was no escape from the parade of memories, both fond and forlorn, that fell forth with the rain." />
+                <img src="images/13.jpg" alt="When the grass whispers, do you find your lips curling around their soft and brief words?" />
+                <img src="images/6.jpg" alt="Under the pale blot of the sun that reaches through a weeping veil, loneliness has a way of rearing up, seizing what it may." />
+                <img src="images/2.jpg" alt="The light was a beacon to all nightly creatures -- a murmur in the snow, a gentle reminder that though night has swallowed the world, light persists, a friend, a lover." />
+                <img src="images/11.jpg" alt="Delicate forms, winding and binding themselves to whatever purchase they could manage. A plant knows only to reach up, to belong." />
+                <img src="images/3.jpg" alt="Spindly, threaded, organic machinery and fractal forms... nature is industrious, the blueprint of birth, construction, decay, and destruction." />
+                <img src="images/10.jpg" alt="At times when the light seeps through, defined by passing around and over the concrete bodies of collected atoms, their is both math and symmetry within it." />
+                <img src="images/8.jpg" alt="Illumination - mythologically, Prometheus gave us the concept, and suffered for it greatly. What splendour, what beauty, however undeserved, the ability to harness light." />
+                <img src="images/7.jpg" alt="It was the kind of cold that delighted in its discomfort -- it wound its way around my bones, pressing tightly to my form. I felt suspended in the winter, a fragment, a figment." />
+                <img src="images/5.jpg" alt="There are days that seem to define the concept of Purgatory - trapped within a grey and murky realm, we perform our individual machinations, tediously, heedlessly." />
+            </div><BR>
+        </div>
+
+        <script>
+            var slideShow = function (container) {
+                this.images = [];
+                this.curImage = 0;
+                var altTextContainer = $("#altText"); 
+
+                for (i = 0; i < container.childElementCount; i++) {
+                    this.images.push(container.children[i]);
+                    this.images[i].style.display = "none";
+                }
+
+                var updateAltText = function () {
+                    var altText = $(this.images[this.curImage]).attr("alt");
+                    altTextContainer.fadeOut(2600, function () {
+                        $(this).text(altText).fadeIn(2600);
+                    });
+                };
+
+                var nextSlide = function () {
+                    $(this.images).fadeOut(2600).delay(2600);
+                    $(this.images[this.curImage]).fadeIn(2600);
+                    updateAltText.call(this);
+                    this.curImage++;
+
+                    if (this.curImage >= this.images.length) {
+                        this.curImage = 0;
+                    }
+                    window.setTimeout(nextSlide.bind(this), 6200);
+                };
+
+                nextSlide.call(this);
+            };
+
+            slideShow(document.getElementById("slideshow"));
+        </script>
+
+        <h2>The normalcies of life, framed in contexts that the mind has conjured.</h2>
+
+        <script>
+           $(document).ready(function () {
+    var square = $(".square");
+
+    
+    square.css({
+        "top": "1",
+        "left": "0",
+        "border-radius": "0", 
+    });
+
+    // Function to move the square in a pattern and change shape
+    function moveAndChangeShape() {
+        square.animate({
+            top: "-=50px", // Move up
+            "border-radius": "50%", // Change to a circle
+        }, 1000, function () {
+            square.animate({
+                left: "+=50px", // Move right
+                "border-radius": "0", // Change back to a square
+            }, 1000, function () {
+                square.animate({
+                    top: "+=50px", // Move down
+                    "border-radius": "50%", // Change to a circle
+                }, 1000, function () {
+                    square.animate({
+                        left: "-=50px", // Move left
+                        "border-radius": "0", // Change back to a square
+                    }, 1000, function () {
+                        // Repeat the pattern
+                        moveAndChangeShape();
+                    });
+                });
+            });
+        });
+    }
+
+    moveAndChangeShape(); // Start the movement and shape change
+});
+
+
+            // Function to create a raindrop
+            function createRaindrop() {
+                // Create a div for the raindrop
+                var raindrop = $("<div class='raindrop'></div>");
+
+                // Set initial position and size
+                raindrop.css({
+                    "left": Math.random() * $(window).width(), // Random horizontal position
+                    
+                    "animation-duration": Math.random() * 1.5 + 0.5 + "s", // Random falling speed
+                });
+
+                // Append the raindrop to the container
+                $(".raindrop-container").append(raindrop);
+
+                // Animation to make the raindrop fall
+                raindrop.animate({
+                    top: "100%", // Move to the bottom of the container
+                   // left: "20%", this creates a neat snow effect
+                    opacity: 0 // Fade out
+                }, {
+                    duration: Math.random() * 4000 + 1000, // Random duration
+                    easing: "linear", // Linear animation
+                    complete: function () {
+                        // Remove the raindrop after it reaches the bottom
+                        $(this).remove();
+                        // Create a new raindrop
+                        createRaindrop();
+                    }
+
+                    
+                });
+            }
+
+           
+            for (var i = 0; i < 19; i++) {
+                createRaindrop();
+            }
+      
+
+        </script>
+
+    </div>
+
+    
+    <audio id="rainAudio" loop>
+        <source src="sounds/Rain.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var rainAudio = document.getElementById("rainAudio");
+            var isPlaying = false;
+
+            document.getElementById("playButton").addEventListener("click", function () {
+                if (rainAudio) {
+                    if (isPlaying) {
+                        rainAudio.pause();
+                        isPlaying = false;
+                    } else {
+                        rainAudio.play()
+                            .then(function () {
+                                console.log("Audio playback started successfully.");
+                                isPlaying = true;
+                            })
+                            .catch(function (error) {
+                                console.error("Error playing audio:", error.message);
+                            });
+                    }
+                } else {
+                    console.error("Audio element not found.");
+                }
+            });
+
+            
+            rainAudio.volume = 0.1; 
+        });
+    </script>
+</body>
+
+</html>

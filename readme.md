@@ -1,0 +1,7 @@
+Wow, so this was a huge refresher for css for me! I had forgotten how to make shapes, so I spent some time looking that up. Then, I used chatGPT to help me figure out the phrasing for animation -- I had tried some fading in and out, but couldn't get the phrasing correct. ChatGPT helped me figure out how to move the square -- then I prompted it with some more fun stuff, like how to get it to move back and forth. After that, I asked it how to move in a square and have it change to another shape every other movement. I love the effect, but had some issues in positioning it where I wanted.
+
+Next, I asked chatgpt for some help with the rain drop animation -- I learned a lot about math random from this prompt, and love the effect. I also added in some rain audio, and asked chatgpt for some troubleshooting help as I couldn't initially get it to play. i fed it my console log error, and it told me that autoplay is generally not supported, so I needed something to click the sound on, so I created the click here button!
+
+I followed one of the website tutorials you provided in our week 8 course site to create the slideshow effect for my photography! Then I used an alt text to change the phrases with the pictures!
+
+I didn't have my square fade out, but did play with it changing shape, so I hope that that suffices - I figured the rain drops could count as a shape fading out! I loved this assignment, it was a lot of fun! ChatGPT was extrememly helpful in finding errors in my code, as well as helping me understand the phrasing for jquery better!
